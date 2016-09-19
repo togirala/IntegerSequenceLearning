@@ -15,8 +15,8 @@ for eachRow in range(len(testData)):
 	completeString = testData.Sequence[eachRow]
 	splitString = completeString.split(',')
 	for eachElement in range(len(splitString)-1):
-		difference = splitString[(eachElement+1)] - splitString[eachElement]
-		print difference
+		difference = int(splitString[eachElement+1]) - int(splitString[eachElement])
+		
 print(splitString)
 #   splitString = completeString.split("/")
 
