@@ -5,6 +5,7 @@ from sklearn import datasets, linear_model
 testData = pd.read_csv('C:\Users\I854540\WorkSpace\IntegerSequenceLearning\data\\train.csv')
 
 testData['difference'] = ''
+testData['SequenceArray'] = ''
 def createZerosArray(arraySize):
 	difference = np.zeros(arraySize)
 	return difference
@@ -18,6 +19,18 @@ def computeDifference(splitString):
 for eachRow in range(len(testData)):
 	completeString = testData.Sequence[eachRow]
 	splitString = completeString.split(',')
-	
+	testData['SequenceArray'].loc[eachRow]  = splitString
 	testData['difference'].loc[eachRow] = computeDifference(splitString)
+
+
+
+regr = linear_model.LinearRegression()
+
+
+AIM - get x and y axes for the test and train data and try to see the results of  LinearRegression
+
+
+
+
+
 	
