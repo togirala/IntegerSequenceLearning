@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 from sklearn import datasets, linear_model
 
-testData = pd.read_csv('C:\Users\I854540\WorkSpace\IntegerSequenceLearning\data\\train.csv')
+testData = pd.read_csv('C:\Users\I854540\WorkSpace\IntegerSequenceLearning\data\short.csv')
 
 testData['difference'] = ''
 testData['SequenceArray'] = ''
@@ -16,21 +16,27 @@ def computeDifference(splitString):
 	 	differenceArray[eachElement] = round(int(splitString[eachElement+1]) - int(splitString[eachElement]))
 	return differenceArray
 
+x = pd.DataFrame(columns=['A'])
+y = pd.DataFrame(columns=['A'])
 for eachRow in range(len(testData)):
 	completeString = testData.Sequence[eachRow]
 	splitString = completeString.split(',')
+	splitString =[float(i) for i in splitString]
 	testData['SequenceArray'].loc[eachRow]  = splitString
 	testData['difference'].loc[eachRow] = computeDifference(splitString)
+	# print splitString[-1]
+	# print splitString[:-1]
+	y['A'].loc[eachRow] = splitString[5]
 
-
-
-regr = linear_model.LinearRegression()
-
-
-AIM - get x and y axes for the test and train data and try to see the results of  LinearRegression
-
-
-
-
-
+	x['A'].loc[eachRow] = splitString[:5]
 	
+	# print x['A'].loc[eachRow]
+	print eachRow
+
+
+print x['A']
+print y['A']
+regr = linear_model.LinearRegression()
+regr.fit(x['A'], y['A'])
+regr.score(x['A'], y['A'])
+
